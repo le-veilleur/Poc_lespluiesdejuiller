@@ -47,7 +47,7 @@ COPY --from=builder /app/prisma/generated ./prisma/generated
 COPY --from=builder /app/prisma.config.ts ./prisma.config.ts
 
 # Expose le port 3000 pour l'application Next.js
-EXPOSE 3000
+EXPOSE 3010
 
 # Commande pour démarrer l'application Next.js
 CMD ["npx", "next", "dev"]
