@@ -8,11 +8,11 @@ import type { ApiResponse, Conference } from "@/types";
 const CATEGORIES = [
   "Tous",
   "Culture",
-  "Ecologie",
+  "Écologie",
   "Musique",
-  "Cinema",
+  "Cinéma",
   "Bien-être",
-  "Societe",
+  "Société",
   "Art",
   "Nature",
 ];
@@ -31,7 +31,7 @@ export default function ConferencesPage() {
     // setLoading true au debut du fetch pour afficher le loader
     setLoading(true);
     try {
-      // 
+      //
       const params = new URLSearchParams();
       if (selectedCategory !== "Tous") {
         params.set("category", selectedCategory);
@@ -101,9 +101,13 @@ export default function ConferencesPage() {
       setConferences((prev) =>
         prev.map((c) =>
           c.id === conferenceId
-            ? { ...c, registeredCount: (c.registeredCount ?? 0) + 1, isRegistered: true }
-            : c
-        )
+            ? {
+                ...c,
+                registeredCount: (c.registeredCount ?? 0) + 1,
+                isRegistered: true,
+              }
+            : c,
+        ),
       );
       setMessage("Inscription confirmee !");
     } catch {
@@ -188,17 +192,26 @@ export default function ConferencesPage() {
 
       {!authLoading && !user && (
         <div className="bg-blue-50 border border-blue-200 text-blue-800 px-4 py-4 rounded-lg mb-6">
-          <p className="font-semibold mb-1">Envie de participer aux conferences ?</p>
+          <p className="font-semibold mb-1">
+            Envie de participer aux conferences ?
+          </p>
           <p className="text-sm">
             Pour reserver votre place, veuillez{" "}
-            <Link href="/register" className="underline font-medium hover:text-blue-600">
+            <Link
+              href="/register"
+              className="underline font-medium hover:text-blue-600"
+            >
               creer un compte
             </Link>{" "}
             puis{" "}
-            <Link href="/billets" className="underline font-medium hover:text-blue-600">
+            <Link
+              href="/billets"
+              className="underline font-medium hover:text-blue-600"
+            >
               acheter un billet
             </Link>
-            . Une fois votre billet obtenu, vous pourrez vous inscrire aux conferences de votre choix.
+            . Une fois votre billet obtenu, vous pourrez vous inscrire aux
+            conferences de votre choix.
           </p>
         </div>
       )}
@@ -261,7 +274,9 @@ export default function ConferencesPage() {
                         {conf.category}
                       </span>
                       {/* Affiche "Complet" en rouge ou "X place(s) restante(s)" */}
-                      <span className={isFull ? "text-red-600 font-medium" : ""}>
+                      <span
+                        className={isFull ? "text-red-600 font-medium" : ""}
+                      >
                         {isFull
                           ? "Complet"
                           : `${remainingSpots} place${remainingSpots > 1 ? "s" : ""} restante${remainingSpots > 1 ? "s" : ""}`}
@@ -273,8 +288,8 @@ export default function ConferencesPage() {
                   {/*   - isRegistered = true  → badge vert "Inscrit" */}
                   {/*   - isFull = true         → bouton grise "Complet" */}
                   {/*   - sinon                 → bouton "S'inscrire" */}
-                  {user && (
-                    conf.isRegistered ? (
+                  {user &&
+                    (conf.isRegistered ? (
                       <span className="ml-4 px-4 py-2 bg-green-50 text-green-700 text-sm rounded-md border border-green-200">
                         Inscrit
                       </span>
@@ -290,8 +305,7 @@ export default function ConferencesPage() {
                             ? "Complet"
                             : "S'inscrire"}
                       </button>
-                    )
-                  )}
+                    ))}
                 </div>
               </div>
             );
