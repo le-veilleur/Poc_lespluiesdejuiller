@@ -25,6 +25,11 @@ export default function Header() {
             <Link href="/planning" className="hover:underline">
               Mon planning
             </Link>
+            {user.role === "ADMIN" && (
+              <Link href="/admin" className="hover:underline font-medium">
+                Administration
+              </Link>
+            )}
             <span className="text-gray-500">{user.name}</span>
             <button
               onClick={logout}

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useCallback } from "react";
+import Link from "next/link";
 import { useAuth } from "@/contexts/AuthContext";
 import type { ApiResponse, Conference } from "@/types";
 
@@ -17,7 +18,7 @@ const CATEGORIES = [
 ];
 
 export default function ConferencesPage() {
-  const { user } = useAuth();
+  const { user, loading: authLoading } = useAuth();
   const [conferences, setConferences] = useState<Conference[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -184,6 +185,23 @@ export default function ConferencesPage() {
           />
         </div>
       </div>
+
+      {!authLoading && !user && (
+        <div className="bg-blue-50 border border-blue-200 text-blue-800 px-4 py-4 rounded-lg mb-6">
+          <p className="font-semibold mb-1">Envie de participer aux conferences ?</p>
+          <p className="text-sm">
+            Pour reserver votre place, veuillez{" "}
+            <Link href="/register" className="underline font-medium hover:text-blue-600">
+              creer un compte
+            </Link>{" "}
+            puis{" "}
+            <Link href="/billets" className="underline font-medium hover:text-blue-600">
+              acheter un billet
+            </Link>
+            . Une fois votre billet obtenu, vous pourrez vous inscrire aux conferences de votre choix.
+          </p>
+        </div>
+      )}
 
       {error && (
         <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded mb-6">

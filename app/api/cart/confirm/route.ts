@@ -38,6 +38,9 @@ export async function POST(
               userId: auth.userId,
               type: item.type,
               price: item.price,
+              name: item.name,
+              email: item.email,
+              dateOfBirth: item.dateOfBirth,
             },
           })
         )

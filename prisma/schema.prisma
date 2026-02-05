@@ -35,11 +35,14 @@ model User {
 }
 
 model Ticket {
-  id        String     @id @default(cuid())
-  userId    String
-  type      TicketType
-  price     Float
-  createdAt DateTime   @default(now())
+  id          String     @id @default(cuid())
+  userId      String
+  type        TicketType
+  price       Float
+  name        String
+  email       String
+  dateOfBirth DateTime
+  createdAt   DateTime   @default(now())
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
@@ -74,11 +77,14 @@ model Cart {
 }
 
 model CartItem {
-  id        String     @id @default(cuid())
-  cartId    String
-  type      TicketType
-  price     Float
-  createdAt DateTime   @default(now())
+  id          String     @id @default(cuid())
+  cartId      String
+  type        TicketType
+  price       Float
+  name        String
+  email       String
+  dateOfBirth DateTime
+  createdAt   DateTime   @default(now())
 
   cart Cart @relation(fields: [cartId], references: [id], onDelete: Cascade)
 }

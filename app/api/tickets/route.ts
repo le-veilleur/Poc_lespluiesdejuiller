@@ -56,19 +56,8 @@ export async function POST(
       );
     }
 
-    // Recuperer l'utilisateur pour verifier l'age
-    const user = await prisma.user.findUnique({
-      where: { id: auth.userId },
-    });
-
-    if (!user) {
-      return NextResponse.json(
-        { success: false, error: "Utilisateur introuvable" },
-        { status: 404 }
-      );
-    }
-
-    const age = getAge(user.dateOfBirth);
+    // Valider l'age du participant (pas du compte acheteur)
+    const age = getAge(result.data.dateOfBirth);
     const validation = validateTicketTypeForAge(result.data.type, age);
 
     if (validation.error) {
@@ -86,6 +75,9 @@ export async function POST(
         userId: auth.userId,
         type: ticketType,
         price,
+        name: result.data.name,
+        email: result.data.email,
+        dateOfBirth: result.data.dateOfBirth,
       },
     });
 

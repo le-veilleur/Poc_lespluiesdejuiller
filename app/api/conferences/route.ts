@@ -84,9 +84,11 @@ export async function POST(
 
   try {
     const body = await request.json();
+    console.log("Conference POST body:", JSON.stringify(body));
 
     const result = createConferenceSchema.safeParse(body);
     if (!result.success) {
+      console.log("Validation errors:", JSON.stringify(result.error.issues));
       return NextResponse.json(
         { success: false, error: result.error.issues[0].message },
         { status: 400 },
