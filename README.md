@@ -13,7 +13,7 @@ Projet Next.js pour le festival Les Pluies de Juillet.
 Copier le fichier d'exemple et adapter les valeurs :
 
 ```bash
-cp front/.env.example front/.env
+cp .env.example .env
 ```
 
 Variables a configurer dans `front/.env` :
