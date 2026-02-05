@@ -35,6 +35,9 @@ export interface Ticket {
   userId: string;
   type: TicketType;
   price: number;
+  name: string;
+  email: string;
+  dateOfBirth: Date;
   createdAt: Date;
 }
 
@@ -72,6 +75,9 @@ export interface CartItem {
   cartId: string;
   type: TicketType;
   price: number;
+  name: string;
+  email: string;
+  dateOfBirth: Date;
   createdAt: Date;
 }
 
