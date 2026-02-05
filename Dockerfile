@@ -50,4 +50,4 @@ COPY --from=builder /app/prisma.config.ts ./prisma.config.ts
 EXPOSE 3010
 
 # Commande pour démarrer l'application Next.js
-CMD ["npx", "next", "dev"]
+CMD ["npx", "next", "dev", "-p", "3010"]
